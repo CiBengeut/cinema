@@ -1,0 +1,228 @@
+/* =========================
+   CINEM4 AUTH (CLEAN FINAL)
+   ========================= */
+
+/* shell */
+.auth-shell{
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.03);
+  box-shadow: 0 18px 60px rgba(0,0,0,.45);
+}
+
+/* layout desktop: 2 kolom */
+.auth-body{
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 620px;
+}
+
+/* pane */
+.auth-pane{
+  padding: 46px;
+  min-width: 0;
+  position: relative;
+  z-index: 1;          /* di bawah cover */
+  overflow: hidden;    /* biar isi yg geser ga keluar */
+  background: rgba(255,255,255,.02);
+}
+
+.auth-pane--register{
+  border-right: 1px solid rgba(255,255,255,.08);
+}
+
+/* link */
+.auth-link{
+  color: rgba(255,255,255,.90);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255,255,255,.28);
+}
+.auth-link:hover{
+  color:#fff;
+  border-bottom-color: rgba(255,255,255,.55);
+}
+
+/* form input theme */
+.auth-pane .form-control,
+.auth-pane .input-group-text,
+.auth-pane .btn.btn-dark{
+  background: rgba(0,0,0,.22) !important;
+  border-color: rgba(255,255,255,.16) !important;
+}
+.auth-pane .form-control::placeholder{
+  color: rgba(255,255,255,.35);
+}
+
+/* =========================
+   COVER (MOVIEGOERS)
+   ========================= */
+.auth-cover{
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 50%;
+  z-index: 10;
+
+  /* warna cover FINAL (selaras CINEM4) */
+  background:
+    radial-gradient(1000px 560px at 18% 28%, rgba(31,111,255,.48), transparent 60%),
+    radial-gradient(900px 560px at 85% 70%, rgba(31,111,255,.22), transparent 65%),
+    rgba(9,16,32,.78);
+  backdrop-filter: blur(14px);
+
+  border-right: 1px solid rgba(255,255,255,.14);
+  transition: transform .85s cubic-bezier(.22, 1, .36, 1);
+  will-change: transform;
+  transform: translate3d(0,0,0);
+  backface-visibility: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+  overflow: hidden;
+}
+
+/* highlight */
+.auth-cover::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 55%),
+    radial-gradient(60% 60% at 30% 25%, rgba(255,255,255,.08), rgba(255,255,255,0) 70%);
+  opacity:.7;
+  pointer-events:none;
+}
+
+.auth-cover-inner{
+  padding: 46px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+
+.auth-big{
+  font-size: 52px;
+  font-weight: 900;
+  color:#fff;
+  line-height: 1.05;
+}
+.auth-sub{
+  max-width: 420px;
+  line-height: 1.6;
+  color: rgba(255,255,255,.72) !important;
+}
+
+/* posisi cover sesuai mode */
+.auth-shell.is-register .auth-cover{
+  transform: translate3d(100%,0,0);
+  border-right: none;
+  border-left: 1px solid rgba(255,255,255,.14);
+}
+.auth-shell.is-login .auth-cover{
+  transform: translate3d(0,0,0);
+  border-left: none;
+  border-right: 1px solid rgba(255,255,255,.14);
+}
+
+/* =========================
+   COVER TEXT SWITCH
+   ========================= */
+.auth-big--login, .auth-sub--login{ display:none; }
+.auth-big--register, .auth-sub--register{ display:block; }
+
+.auth-shell.is-login .auth-big--login,
+.auth-shell.is-login .auth-sub--login{ display:block; }
+
+.auth-shell.is-login .auth-big--register,
+.auth-shell.is-login .auth-sub--register{ display:none; }
+
+/* =========================
+   FORM SLIDE (PAKAI INNER)
+   ========================= */
+.auth-pane-inner{
+  transform: translate3d(0,0,0);
+  opacity: 1;
+  transition:
+    transform .78s cubic-bezier(.22, 1, .36, 1),
+    opacity  .35s ease;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* masuknya form dikasih delay sedikit */
+.auth-shell.is-register .auth-pane--register .auth-pane-inner,
+.auth-shell.is-login    .auth-pane--login    .auth-pane-inner{
+  transition-delay: .14s;
+}
+
+/* REGISTER mode: login menghilang ke kanan */
+.auth-shell.is-register .auth-pane--login .auth-pane-inner{
+  transform: translate3d(36px,0,0);
+  opacity: 0;
+  pointer-events: none;
+  transition-delay: 0s;
+}
+
+/* LOGIN mode: register menghilang ke kiri */
+.auth-shell.is-login .auth-pane--register .auth-pane-inner{
+  transform: translate3d(-36px,0,0);
+  opacity: 0;
+  pointer-events: none;
+  transition-delay: 0s;
+}
+
+/* =========================
+   RESPONSIVE (MOBILE)
+   ========================= */
+@media (max-width: 992px){
+  .auth-body{
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .auth-pane{
+    padding: 26px;
+    order: 1;
+  }
+
+  .auth-cover{
+    position: relative;
+    width: 100%;
+    transform: none !important; /* cover tidak geser di mobile */
+    border: none;
+    border-top: 1px solid rgba(255,255,255,.12);
+    order: 2;
+  }
+
+  .auth-cover-inner{ padding: 22px; }
+  .auth-big{ font-size: 28px; }
+
+  /* hanya 1 form terlihat di mobile (tanpa dobel form) */
+  .auth-shell.is-register .auth-pane--login{
+    height: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    pointer-events: none;
+  }
+  .auth-shell.is-login .auth-pane--register{
+    height: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    pointer-events: none;
+  }
+
+  .auth-pane--register{
+    border-right: none;
+  }
+}
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .auth-cover, .auth-pane-inner{ transition: none !important; }
+}
+
+
