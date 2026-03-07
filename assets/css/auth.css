@@ -1,228 +1,402 @@
 /* =========================
-   CINEM4 AUTH (CLEAN FINAL)
+   CINEM4 AUTH PREMIUM
    ========================= */
 
-/* shell */
 .auth-shell{
-  border-radius: 22px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.03);
-  box-shadow: 0 18px 60px rgba(0,0,0,.45);
+border-radius:24px;
+overflow:hidden;
+
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.10);
+
+backdrop-filter:blur(10px);
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.55),
+inset 0 1px 0 rgba(255,255,255,.04);
 }
 
-/* layout desktop: 2 kolom */
+
+/* =========================
+   LAYOUT
+   ========================= */
+
 .auth-body{
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 620px;
+position:relative;
+display:grid;
+grid-template-columns:1fr 1fr;
+min-height:640px;
 }
 
-/* pane */
+
+/* =========================
+   PANE
+   ========================= */
+
 .auth-pane{
-  padding: 46px;
-  min-width: 0;
-  position: relative;
-  z-index: 1;          /* di bawah cover */
-  overflow: hidden;    /* biar isi yg geser ga keluar */
-  background: rgba(255,255,255,.02);
+padding:50px;
+position:relative;
+z-index:1;
+
+background:rgba(255,255,255,.02);
+
+display:flex;
+align-items:center;
 }
 
 .auth-pane--register{
-  border-right: 1px solid rgba(255,255,255,.08);
+border-right:1px solid rgba(255,255,255,.08);
 }
 
-/* link */
-.auth-link{
-  color: rgba(255,255,255,.90);
-  text-decoration: none;
-  border-bottom: 1px dashed rgba(255,255,255,.28);
-}
-.auth-link:hover{
-  color:#fff;
-  border-bottom-color: rgba(255,255,255,.55);
+.auth-pane-inner{
+max-width:420px;
+margin:auto;
+width:100%;
 }
 
-/* form input theme */
-.auth-pane .form-control,
-.auth-pane .input-group-text,
-.auth-pane .btn.btn-dark{
-  background: rgba(0,0,0,.22) !important;
-  border-color: rgba(255,255,255,.16) !important;
-}
-.auth-pane .form-control::placeholder{
-  color: rgba(255,255,255,.35);
-}
 
 /* =========================
-   COVER (MOVIEGOERS)
+   TITLE
    ========================= */
-.auth-cover{
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 50%;
-  z-index: 10;
 
-  /* warna cover FINAL (selaras CINEM4) */
-  background:
-    radial-gradient(1000px 560px at 18% 28%, rgba(31,111,255,.48), transparent 60%),
-    radial-gradient(900px 560px at 85% 70%, rgba(31,111,255,.22), transparent 65%),
-    rgba(9,16,32,.78);
-  backdrop-filter: blur(14px);
-
-  border-right: 1px solid rgba(255,255,255,.14);
-  transition: transform .85s cubic-bezier(.22, 1, .36, 1);
-  will-change: transform;
-  transform: translate3d(0,0,0);
-  backface-visibility: hidden;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
-  overflow: hidden;
+.auth-title{
+font-weight:800;
+letter-spacing:.4px;
+font-size:28px;
 }
 
-/* highlight */
-.auth-cover::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 55%),
-    radial-gradient(60% 60% at 30% 25%, rgba(255,255,255,.08), rgba(255,255,255,0) 70%);
-  opacity:.7;
-  pointer-events:none;
+
+/* =========================
+   FORM
+   ========================= */
+
+.auth-pane .form-control{
+
+background:rgba(0,0,0,.35);
+border:1px solid rgba(255,255,255,.14);
+
+color:#fff;
+
+border-radius:12px;
+
+padding:11px 13px;
+
+transition:.25s;
+}
+
+.auth-pane .form-control:focus{
+
+background:rgba(0,0,0,.45);
+
+border-color:#2f7bff;
+
+box-shadow:0 0 0 2px rgba(47,123,255,.25);
+
+color:#fff;
+}
+
+.auth-pane .form-control::placeholder{
+color:rgba(255,255,255,.40);
+}
+
+.auth-pane .input-group-text{
+background:rgba(0,0,0,.35);
+border:1px solid rgba(255,255,255,.14);
+color:#fff;
+}
+
+.auth-pane .btn.btn-dark{
+background:rgba(0,0,0,.45);
+border:1px solid rgba(255,255,255,.14);
+}
+
+
+/* =========================
+   BUTTON
+   ========================= */
+
+.auth-pane button.btn-light{
+
+background:#fff;
+
+border:none;
+
+border-radius:12px;
+
+transition:.25s;
+}
+
+.auth-pane button.btn-light:hover{
+
+transform:translateY(-2px);
+
+box-shadow:
+0 12px 25px rgba(0,0,0,.45);
+}
+
+
+/* =========================
+   LINKS
+   ========================= */
+
+.auth-link{
+
+color:rgba(255,255,255,.85);
+
+text-decoration:none;
+
+border-bottom:1px dashed rgba(255,255,255,.25);
+}
+
+.auth-link:hover{
+
+color:#fff;
+
+border-bottom-color:rgba(255,255,255,.6);
+}
+
+
+/* =========================
+   COVER
+   ========================= */
+
+.auth-cover{
+
+position:absolute;
+inset:0 auto 0 0;
+
+width:50%;
+
+z-index:10;
+
+/* cinematic background */
+
+background:
+
+radial-gradient(900px 520px at 20% 30%, rgba(50,120,255,.45), transparent 60%),
+
+radial-gradient(900px 520px at 80% 70%, rgba(20,90,255,.20), transparent 65%),
+
+linear-gradient(135deg,#0a1326,#0c1933);
+
+backdrop-filter:blur(14px);
+
+border-right:1px solid rgba(255,255,255,.12);
+
+transition:
+transform .9s cubic-bezier(.22,1,.36,1);
+
+display:flex;
+
+align-items:center;
 }
 
 .auth-cover-inner{
-  padding: 46px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 14px;
+
+padding:60px;
+
+max-width:420px;
 }
+
+
+/* subtle light overlay */
+
+.auth-cover::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+linear-gradient(135deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,0) 60%),
+
+radial-gradient(60% 60% at 30% 25%, rgba(255,255,255,.08), transparent 70%);
+
+pointer-events:none;
+}
+
+
+/* =========================
+   COVER TEXT
+   ========================= */
 
 .auth-big{
-  font-size: 52px;
-  font-weight: 900;
-  color:#fff;
-  line-height: 1.05;
-}
-.auth-sub{
-  max-width: 420px;
-  line-height: 1.6;
-  color: rgba(255,255,255,.72) !important;
+
+font-size:48px;
+
+font-weight:900;
+
+line-height:1.05;
+
+color:#fff;
+
+margin-bottom:14px;
+
+letter-spacing:.3px;
 }
 
-/* posisi cover sesuai mode */
+.auth-sub{
+
+font-size:15px;
+
+line-height:1.6;
+
+color:rgba(255,255,255,.75);
+
+max-width:380px;
+}
+
+
+/* =========================
+   COVER POSITION
+   ========================= */
+
 .auth-shell.is-register .auth-cover{
-  transform: translate3d(100%,0,0);
-  border-right: none;
-  border-left: 1px solid rgba(255,255,255,.14);
+
+transform:translateX(100%);
+
+border-right:none;
+
+border-left:1px solid rgba(255,255,255,.12);
 }
+
 .auth-shell.is-login .auth-cover{
-  transform: translate3d(0,0,0);
-  border-left: none;
-  border-right: 1px solid rgba(255,255,255,.14);
+
+transform:translateX(0);
 }
+
 
 /* =========================
    COVER TEXT SWITCH
    ========================= */
-.auth-big--login, .auth-sub--login{ display:none; }
-.auth-big--register, .auth-sub--register{ display:block; }
+
+.auth-big--login,
+.auth-sub--login{
+display:none;
+}
 
 .auth-shell.is-login .auth-big--login,
-.auth-shell.is-login .auth-sub--login{ display:block; }
+.auth-shell.is-login .auth-sub--login{
+display:block;
+}
 
 .auth-shell.is-login .auth-big--register,
-.auth-shell.is-login .auth-sub--register{ display:none; }
+.auth-shell.is-login .auth-sub--register{
+display:none;
+}
+
 
 /* =========================
-   FORM SLIDE (PAKAI INNER)
+   FORM SLIDE
    ========================= */
+
 .auth-pane-inner{
-  transform: translate3d(0,0,0);
-  opacity: 1;
-  transition:
-    transform .78s cubic-bezier(.22, 1, .36, 1),
-    opacity  .35s ease;
-  will-change: transform, opacity;
-  backface-visibility: hidden;
+
+transform:translate3d(0,0,0);
+
+opacity:1;
+
+transition:
+transform .75s cubic-bezier(.22,1,.36,1),
+opacity .35s ease;
 }
 
-/* masuknya form dikasih delay sedikit */
-.auth-shell.is-register .auth-pane--register .auth-pane-inner,
-.auth-shell.is-login    .auth-pane--login    .auth-pane-inner{
-  transition-delay: .14s;
-}
-
-/* REGISTER mode: login menghilang ke kanan */
 .auth-shell.is-register .auth-pane--login .auth-pane-inner{
-  transform: translate3d(36px,0,0);
-  opacity: 0;
-  pointer-events: none;
-  transition-delay: 0s;
+
+transform:translateX(40px);
+
+opacity:0;
+
+pointer-events:none;
 }
 
-/* LOGIN mode: register menghilang ke kiri */
 .auth-shell.is-login .auth-pane--register .auth-pane-inner{
-  transform: translate3d(-36px,0,0);
-  opacity: 0;
-  pointer-events: none;
-  transition-delay: 0s;
+
+transform:translateX(-40px);
+
+opacity:0;
+
+pointer-events:none;
 }
+
 
 /* =========================
-   RESPONSIVE (MOBILE)
+   MOBILE
    ========================= */
-@media (max-width: 992px){
-  .auth-body{
-    display: flex;
-    flex-direction: column;
-    min-height: auto;
-  }
 
-  .auth-pane{
-    padding: 26px;
-    order: 1;
-  }
+@media (max-width:992px){
 
-  .auth-cover{
-    position: relative;
-    width: 100%;
-    transform: none !important; /* cover tidak geser di mobile */
-    border: none;
-    border-top: 1px solid rgba(255,255,255,.12);
-    order: 2;
-  }
-
-  .auth-cover-inner{ padding: 22px; }
-  .auth-big{ font-size: 28px; }
-
-  /* hanya 1 form terlihat di mobile (tanpa dobel form) */
-  .auth-shell.is-register .auth-pane--login{
-    height: 0;
-    overflow: hidden;
-    padding-top: 0;
-    padding-bottom: 0;
-    pointer-events: none;
-  }
-  .auth-shell.is-login .auth-pane--register{
-    height: 0;
-    overflow: hidden;
-    padding-top: 0;
-    padding-bottom: 0;
-    pointer-events: none;
-  }
-
-  .auth-pane--register{
-    border-right: none;
-  }
+.auth-body{
+display:flex;
+flex-direction:column;
 }
 
-/* reduce motion */
+.auth-pane{
+padding:28px;
+}
+
+.auth-cover{
+
+position:relative;
+
+width:100%;
+
+transform:none!important;
+
+border:none;
+
+border-top:1px solid rgba(255,255,255,.12);
+}
+
+.auth-cover-inner{
+padding:30px;
+}
+
+.auth-big{
+font-size:28px;
+}
+
+.auth-shell.is-register .auth-pane--login{
+
+height:0;
+
+overflow:hidden;
+
+padding-top:0;
+
+padding-bottom:0;
+}
+
+.auth-shell.is-login .auth-pane--register{
+
+height:0;
+
+overflow:hidden;
+
+padding-top:0;
+
+padding-bottom:0;
+}
+
+.auth-pane--register{
+border-right:none;
+}
+
+}
+
+
+/* =========================
+   REDUCE MOTION
+   ========================= */
+
 @media (prefers-reduced-motion: reduce){
-  .auth-cover, .auth-pane-inner{ transition: none !important; }
+
+.auth-cover,
+.auth-pane-inner{
+transition:none!important;
 }
 
-
+}

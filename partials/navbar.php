@@ -9,10 +9,9 @@ $active = $active ?? 'home';
   <div class="container-fluid px-3 px-lg-4">
 
     <!-- Brand -->
-    <a class="navbar-brand fw-bold d-flex align-items-center gap-2 me-lg-4" href="index.php">
-      <span class="brand-dot"></span>
-      <span class="brand-text">CINEM4</span>
-    </a>
+  <a class="navbar-brand d-flex align-items-center gap-2 me-lg-4" href="index.php">
+    <img src="assets/img/logo-cinem4.png" alt="CINEM4" height="40">
+  </a>
 
     <!-- Toggler (mobile) -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNav">

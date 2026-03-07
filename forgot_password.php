@@ -4,6 +4,21 @@ include 'partials/head.php';
 include 'partials/navbar.php';
 ?>
 
+<?php if(isset($_SESSION['success'])): ?>
+<div class="alert alert-success d-flex align-items-center gap-2">
+<i class="bi bi-envelope-check"></i>
+<span><?= $_SESSION['success']; ?></span>
+</div>
+<?php unset($_SESSION['success']); endif; ?>
+
+
+<?php if(isset($_SESSION['error'])): ?>
+<div class="alert alert-danger d-flex align-items-center gap-2">
+<i class="bi bi-exclamation-circle"></i>
+<span><?= $_SESSION['error']; ?></span>
+</div>
+<?php unset($_SESSION['error']); endif; ?>
+
 <div class="container py-5" style="max-width:500px">
 
 <h3 class="text-light mb-4">Lupa Password</h3>

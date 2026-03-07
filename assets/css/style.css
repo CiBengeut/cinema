@@ -50,8 +50,6 @@ body{ background: radial-gradient(1200px 600px at 50% -100px, rgba(31,111,255,.2
   border-radius: 18px;
 }
 
-
-
 /* === CARD yang membesar (bukan gambar) === */
 .poster-card{
   position: relative;

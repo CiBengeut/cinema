@@ -1,6 +1,6 @@
-<footer class="border-top border-secondary mt-5">
+<footer class="border-top border-secondary mt-auto">
   <div class="container py-4 small text-secondary d-flex flex-wrap gap-2 justify-content-between">
-    <div>© <?= date('Y') ?> CINEM4 • Dark Blue Modern</div>
+    <div>© <?= date('Y') ?> CINEM4 </div>
     <div class="d-flex gap-3">
       <a class="text-secondary text-decoration-none" href="#">Terms</a>
       <a class="text-secondary text-decoration-none" href="#">Privacy</a>

@@ -14,12 +14,14 @@ $time   = $_GET['time'] ?? '17:10';
 $studio = $_GET['studio'] ?? 'CINEMA04';
 $date   = $_GET['date'] ?? date('D, d.m.Y'); // mock format
 
-// Gate login (kalau mau ketat)
-// if (!isset($_SESSION['user'])) {
-//   $next = "booking.php?slug=" . urlencode($slug) . "&time=" . urlencode($time) . "&studio=" . urlencode($studio) . "&date=" . urlencode($date);
-//   header("Location: join-us.php?mode=login&next=" . urlencode($next));
-//   exit;
-// }
+
+session_start();
+
+if(!isset($_SESSION['user_id'])){
+    header("Location: join-us.php?redirect=booking");
+    exit;
+}
+
 
 // cari movie
 $movie = null;

@@ -27,128 +27,166 @@ $isLogin = ($mode === 'login');
             <span>Email tidak ditemukan.</span>
     <?php endif; ?>
 </div>
-
 <?php 
 unset($_SESSION['error']); // hapus session supaya alert tidak muncul lagi
 endif; 
 ?>
 
+
 <link rel="stylesheet" href="assets/css/auth.css">
 
 <div class="container py-5">
+
 <div class="auth-shell <?= $isLogin ? 'is-login' : 'is-register' ?>">
 
 <div class="auth-body">
 
-<!-- REGISTER -->
+<!-- ================= REGISTER ================= -->
 <div class="auth-pane auth-pane--register">
 <div class="auth-pane-inner">
 
-<h2 class="auth-title text-light">Hallo, Selamat datang di FOUR CINEMA!</h2>
+<h2 class="auth-title text-light text-center mb-3">
+Create your CINEM4 Account
+</h2>
 
-<div class="text-secondary mb-4">
-Sudah memiliki akun?
+<div class="text-secondary text-center mb-4">
+Sudah punya akun?
 <a class="auth-link" href="?mode=login" data-auth="login">Log in</a>
 </div>
 
 <form class="row g-3" method="post" action="register_action.php">
 
 <div class="col-md-6">
-<label class="form-label text-light">First Name <span class="text-danger">*</span></label>
-<input class="form-control bg-dark text-light border-secondary" name="first_name" required placeholder="Enter your First Name">
+<label class="form-label text-light">First Name</label>
+<input class="form-control bg-dark text-light border-secondary"
+name="first_name"
+placeholder="John"
+required>
 </div>
 
 <div class="col-md-6">
-<label class="form-label text-light">Last Name <span class="text-danger">*</span></label>
-<input class="form-control bg-dark text-light border-secondary" name="last_name" required placeholder="Enter your Last Name">
+<label class="form-label text-light">Last Name</label>
+<input class="form-control bg-dark text-light border-secondary"
+name="last_name"
+placeholder="Doe"
+required>
 </div>
 
 <div class="col-md-6">
-<label class="form-label text-light">Email <span class="text-danger">*</span></label>
-<input type="email" class="form-control bg-dark text-light border-secondary" name="email" required placeholder="Enter your Email">
-<div class="form-text text-secondary">Contoh: nama@gmail.com</div>
+<label class="form-label text-light">Email</label>
+<input type="email"
+class="form-control bg-dark text-light border-secondary"
+name="email"
+placeholder="you@email.com"
+required>
 </div>
 
 <div class="col-md-6">
-<label class="form-label text-light">Whatsapp Nomor <span class="text-danger">*</span></label>
+<label class="form-label text-light">Whatsapp</label>
+
 <div class="input-group">
-<span class="input-group-text bg-dark text-light border-secondary">+62</span>
-<input class="form-control bg-dark text-light border-secondary" name="wa" required placeholder="8xxxxxxxxxx">
+<span class="input-group-text bg-dark text-light border-secondary">
++62
+</span>
+
+<input class="form-control bg-dark text-light border-secondary"
+name="wa"
+placeholder="812xxxxxxx"
+required>
 </div>
-<div class="form-text text-secondary">9–15 digit</div>
+
 </div>
 
 <div class="col-md-6">
-<label class="form-label text-light">Password <span class="text-danger">*</span></label>
+
+<label class="form-label text-light">Password</label>
+
 <div class="input-group">
-<input type="password" class="form-control bg-dark text-light border-secondary" name="password" required minlength="8">
-<button class="btn btn-dark border-secondary" type="button" data-toggle-pass>
+
+<input type="password"
+class="form-control bg-dark text-light border-secondary"
+name="password"
+required>
+
+<button class="btn btn-dark border-secondary"
+type="button"
+data-toggle-pass>
+
 <i class="bi bi-eye"></i>
+
 </button>
+
 </div>
+
 </div>
 
 <div class="col-md-6">
-<label class="form-label text-light">Konfirmasi Password</label>
+
+<label class="form-label text-light">Confirm Password</label>
+
 <div class="input-group">
-<input type="password" class="form-control bg-dark text-light border-secondary" name="password_confirm" required>
-<button class="btn btn-dark border-secondary" type="button" data-toggle-pass>
+
+<input type="password"
+class="form-control bg-dark text-light border-secondary"
+name="password_confirm"
+required>
+
+<button class="btn btn-dark border-secondary"
+type="button"
+data-toggle-pass>
+
 <i class="bi bi-eye"></i>
+
 </button>
+
 </div>
+
 </div>
 
 <div class="col-12">
+
 <div class="form-check">
-<input class="form-check-input" type="checkbox" id="tos" required>
+
+<input class="form-check-input"
+type="checkbox"
+id="tos"
+required>
+
 <label class="form-check-label text-light" for="tos">
+
 Saya setuju dengan syarat & ketentuan
+
 </label>
+
 </div>
+
 </div>
 
 <div class="col-12">
+
 <button class="btn btn-light w-100 py-2 fw-semibold rounded-4">
-Next
+
+Create Account
+
 </button>
+
 </div>
 
 </form>
+
 </div>
 </div>
 
 
-<!-- LOGIN -->
+<!-- ================= LOGIN ================= -->
 <div class="auth-pane auth-pane--login">
 <div class="auth-pane-inner">
 
-<h2 class="auth-title text-light">Log In</h2>
+<h2 class="auth-title text-light text-center mb-3">
+Login to CINEM4
+</h2>
 
-<?php if (isset($_GET['error'])): ?>
-<div class="alert alert-danger d-flex align-items-center gap-2 py-2 px-3 rounded-3 mb-3">
-
-<?php if ($_GET['error']=="empty"): ?>
-<i class="bi bi-exclamation-circle"></i>
-<span>Email dan password wajib diisi.</span>
-
-<?php elseif ($_GET['error']=="not_verified"): ?>
-<i class="bi bi-envelope-exclamation"></i>
-<span>Akun belum diverifikasi. Silakan cek email.</span>
-
-<?php elseif ($_GET['error']=="wrong_password"): ?>
-<i class="bi bi-shield-lock"></i>
-<span>Password salah.</span>
-
-<?php elseif ($_GET['error']=="email_not_found"): ?>
-<i class="bi bi-person-x"></i>
-<span>Email tidak ditemukan.</span>
-
-<?php endif; ?>
-
-</div>
-<?php endif; ?>
-
-<div class="text-secondary mb-4">
+<div class="text-secondary text-center mb-4">
 Belum punya akun?
 <a class="auth-link" href="?mode=register" data-auth="register">Daftar di sini</a>
 </div>
@@ -156,53 +194,88 @@ Belum punya akun?
 <form method="post" action="login_action.php" class="row g-3">
 
 <div class="col-12">
+
 <label class="form-label text-light">Email</label>
-<input type="email" class="form-control bg-dark text-light border-secondary" name="email" required>
+
+<input type="email"
+class="form-control bg-dark text-light border-secondary"
+name="email"
+placeholder="you@email.com"
+required>
+
 </div>
 
 <div class="col-12">
+
 <label class="form-label text-light">Password</label>
+
 <div class="input-group">
-<input type="password" class="form-control bg-dark text-light border-secondary" name="password" required>
-<button class="btn btn-dark border-secondary" type="button" data-toggle-pass>
+
+<input type="password"
+class="form-control bg-dark text-light border-secondary"
+name="password"
+required>
+
+<button class="btn btn-dark border-secondary"
+type="button"
+data-toggle-pass>
+
 <i class="bi bi-eye"></i>
+
 </button>
+
 </div>
+
 </div>
 
 <div class="col-12 d-flex justify-content-end">
-<a href="forgot_password.php" class="auth-link">Lupa Password?</a>
+
+<a href="forgot_password.php" class="auth-link">
+Lupa Password?
+</a>
+
 </div>
 
 <div class="col-12">
+
 <button class="btn btn-light w-100 py-2 fw-semibold rounded-4">
-Log in
+
+Log In
+
 </button>
+
 </div>
 
 </form>
+
 </div>
 </div>
 
 
-<!-- COVER -->
+<!-- ================= COVER ================= -->
 <div class="auth-cover">
 <div class="auth-cover-inner">
 
-<div class="d-flex align-items-center gap-2 mb-3">
-<span class="brand-dot"></span>
-<div class="fw-bold text-white">CINEM4</div>
+<div class="auth-big auth-big--register">
+Join CINEM4
 </div>
 
-<div class="auth-big auth-big--register">Hai Moviegoers!</div>
-<div class="auth-big auth-big--login">Welcome Back!</div>
-
-<div class="text-secondary auth-sub auth-sub--register">
-Buat akun FOUR CINEMA untuk booking lebih cepat.
+<div class="auth-big auth-big--login">
+Welcome Back
 </div>
 
-<div class="text-secondary auth-sub auth-sub--login">
-Login untuk lanjut booking tiket kamu.
+<div class="auth-sub auth-sub--register">
+
+Buat akun CINEM4 untuk pengalaman booking
+film yang lebih cepat dan mudah.
+
+</div>
+
+<div class="auth-sub auth-sub--login">
+
+Login untuk melanjutkan booking
+film favorit kamu.
+
 </div>
 
 </div>

@@ -42,6 +42,9 @@ $stmt->execute();
 
 // ================== KIRIM EMAIL ==================
 $mail = new PHPMailer(true);
+$mail->AddEmbeddedImage('assets/img/logo-cinem4.png','logo_cinem4');
+$mail->CharSet = 'UTF-8';
+$mail->isHTML(true);
 
 $mail->isSMTP();
 $mail->Host = 'smtp.gmail.com';
@@ -54,9 +57,64 @@ $mail->Port = 587;
 $mail->setFrom('fourcinem4@gmail.com', 'CINEM4');
 $mail->addAddress($email);
 
+$mail->isHTML(true);
 $mail->Subject = 'Kode Verifikasi CINEM4';
-$mail->Body    = "Halo $first_name,\n\nKode verifikasi akun CINEM4 kamu adalah: $verification_code\nBerlaku 5 menit.";
 
+$mail->isHTML(true);
+$mail->Subject = 'Kode Verifikasi CINEM4';
+
+$mail->isHTML(true);
+$mail->Subject = 'Kode Verifikasi CINEM4';
+
+$mail->Body = "
+<div style='font-family:Arial;background:#0f172a;padding:40px'>
+
+    <div style='max-width:520px;margin:auto;background:#1e293b;
+    border-radius:14px;padding:35px;text-align:center;color:white;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4)'>
+
+        <img src='cid:logo_cinem4' style='width:230px;margin-bottom:20px'>
+
+        <h2 style='margin-top:5px'>Verifikasi Akun</h2>
+
+        <p style='color:#cbd5f5;font-size:15px'>
+        Halo <b>$first_name</b>, terima kasih telah mendaftar di CINEM4.
+        Gunakan kode berikut untuk memverifikasi akun Anda.
+        </p>
+
+        <div style='
+        margin-top:30px;
+        font-size:40px;
+        font-weight:bold;
+        letter-spacing:10px;
+        background:#0f172a;
+        padding:18px 28px;
+        border-radius:10px;
+        display:inline-block;
+        box-shadow:0 0 15px rgba(59,130,246,0.8);
+        border:1px solid rgba(59,130,246,0.6);
+        '>
+        $verification_code
+        </div>
+
+        <p style='margin-top:25px;font-size:14px;color:#94a3b8'>
+        Kode ini berlaku selama <b>5 menit</b>.
+        </p>
+
+        <hr style='border:none;border-top:1px solid #334155;margin:30px 0'>
+
+        <p style='font-size:12px;color:#64748b'>
+        Jika Anda tidak merasa membuat akun CINEM4, abaikan email ini.
+        </p>
+
+        <p style='font-size:12px;color:#475569;margin-top:10px'>
+        © ".date("Y")." CINEM4. All rights reserved.
+        </p>
+
+    </div>
+
+</div>
+";
 $mail->send();
 
 header("Location: verify.php?email=$email");
